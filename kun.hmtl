@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>ChatGPT</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.2/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@openai/gpt-2@0.2.0/dist/gpt2.min.js"></script>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-input">
+            <input type="text" id="chat-input-field" placeholder="Type your message here...">
+            <button id="chat-submit-button">Send</button>
+        </div>
+        <div id="chat-output">
+            <div id="chat-output-field"></div>
+        </div>
+         </div>
+    <script>
+        // Initialize GPT-2 model
+        const model = new GPT2.Model();
+        model.initialize().then(() => {
+            // Get user input
+            const inputField = document.getElementById('chat-input-field');
+            const submitButton = document.getElementById('chat-submit-button');
+            submitButton.addEventListener('click', () => {
+                // Generate response
+                const response = model.generate(inputField.value);
+                // Display response
+                const outputField = document.getElementById('chat-output-field');
+                outputField.innerHTML = response;
+            });
+        });
+        </script>
+</body>
+</html>
